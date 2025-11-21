@@ -91,13 +91,13 @@ onMounted(() => {
 
 /** cập nhật chiều rộng cột bên trái */
 function onResized({ prevPane }: { prevPane?: { size: number } }) {
-  // nếu không có dữ liệu mới của thẻ được chỉnh sửa
+  /** nếu không có dữ liệu mới của thẻ được chỉnh sửa */
   if (!prevPane?.size) return
 
-  // lưu lại chiều rộng cột bên trái
+  /** lưu lại chiều rộng cột bên trái */
   size.value = prevPane.size
 
-  // lưu local giá trị của chiều rộng cột bên trái
+  /** lưu local giá trị của chiều rộng cột bên trái */
   $local_storage.setItem('conversation_width', round(size.value))
 }
 
