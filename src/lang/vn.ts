@@ -102,6 +102,32 @@ const source: Language = {
   'Kết nối với Tiktok': 'Kết nối với Tiktok',
   'Kết nối với Tiktok để chat nhiều Trang tự động với AI, tối ưu chi phí Marketing với CAPI, tự động tích hợp các ứng dụng của Doanh nghiệp.':
     'Kết nối với Tiktok để chat nhiều Trang tự động với AI, tối ưu chi phí Marketing với CAPI, tự động tích hợp các ứng dụng của Doanh nghiệp.',
+  'add _ member': 'Thêm {count} thành viên',
+
+  'Thông báo gói VIP': 'Thông báo gói VIP',
+  'Một số tổ chức của bạn sắp hoặc đã hết hạn gói':
+    'Một số tổ chức của bạn sắp hoặc đã hết hạn gói',
+  'Đã hết hạn:': 'Đã hết hạn:',
+  'hết hạn': 'hết hạn',
+  'Sắp hết hạn:': 'Sắp hết hạn:',
+  còn: 'còn',
+  'Còn _ ngày': 'Còn {duration} ngày',
+
+  ngày: 'ngày',
+  'Bỏ qua': 'Bỏ qua',
+  'Gia hạn ngay': 'Gia hạn ngay',
+  '...và còn': '...và còn',
+  'tổ chức khác': 'tổ chức khác',
+
+  'Thông báo quan trọng': 'Thông báo quan trọng',
+  'Xem các gói': 'Xem các gói',
+  'Gói của một số Tổ chức sắp hết hạn. Bạn nên gia hạn để tiếp tục sử dụng đầy đủ tính năng và không gián đoạn dịch vụ':
+    'Gói của một số Tổ chức sắp hết hạn. Bạn nên gia hạn để tiếp tục sử dụng đầy đủ tính năng và không gián đoạn dịch vụ',
+  'Đổi gói': 'Đổi gói',
+  'Ngày hết hạn': 'Ngày hết hạn',
+  'Gói hiện tại': 'Gói hiện tại',
+  'Không hiện lại bảng này': 'Không hiện lại bảng này',
+
   v1: {
     common: {
       zalo: 'Zalo',
@@ -176,7 +202,25 @@ const source: Language = {
       copy: 'Sao chép',
       continue: 'Tiếp tục',
       warning: 'Cảnh báo',
+      share_message: 'Chuyển tiếp tin nhắn',
+      share_to: 'Chia sẻ tin nhắn',
+      sharing_content: 'Nội dung chia sẻ',
+      enter_sharing_content: 'Nhập nội dung chia sẻ',
+      attachments: 'File đính kèm',
+      copy_success: 'Đã sao chép',
+      hide: 'Ẩn',
+      show: 'Hiển thị',
+      reset: 'Tạo lại Mã bí mật',
+      token_org: 'Mã bí mật',
+      reset_token_confirm:
+        'Bạn có chắc chắn muốn thay đổi mã truy cập không. Điều này sẽ làm các api đang hoạt động bị dừng lại?',
+      create_new_token: 'Tạo mã bí mật mới',
       tiktok: 'Tiktok',
+      add_member_success: 'Thêm thành viên thành công',
+      remove_member_success: 'Xóa thành viên thành công',
+      sending_message: 'Đang gửi tin nhắn...',
+      sent_success: 'Gửi thành công',
+      sent_failed: 'Gửi thất bại',
     },
     view: {
       network: {
@@ -573,6 +617,7 @@ const source: Language = {
           chat: {
             has_send: '{name} đã nhắn tin: {message}',
             new_message_alert: 'Có tin nhắn mới',
+            reply_message: 'Trả lời tin nhắn',
             filter: {
               title: 'Lọc tin nhắn',
               interact: {
@@ -650,6 +695,8 @@ const source: Language = {
               findding_uid: 'Đang tìm kiếm UID',
             },
             error: {
+              page_deleted:
+                'Một số page có thể đã bị xóa khỏi Tổ chức của bạn, vui lòng quay lại màn chọn trang và lựa chọn lại',
               get_page_info: 'Không tìm thấy dữ liệu trang',
               get_org_info: 'Không tìm thấy dữ liệu tổ chức',
               org_quota_staff:
@@ -669,6 +716,7 @@ const source: Language = {
             action: {
               open_url: 'Đi đến liên kết',
               open_facebook: 'Trang cá nhân Facebook',
+              open_tiktok: 'Trang cá nhân Tiktok',
               open_inbox: 'Mở hộp thư Facebook',
               mark_unread: 'Đánh dấu tin nhắn là chưa đọc',
               block_user: 'Chặn người dùng',
@@ -749,6 +797,8 @@ const source: Language = {
                 place_order: 'Tạo đơn hàng',
                 create_transaction: 'Tạo giao dịch',
                 schedule_appointment: 'Lập lịch',
+                accept: 'Đồng ý',
+                decline: 'Từ chối',
               },
               widget: {
                 not_active: 'Không tìm thấy widget',
@@ -1180,6 +1230,7 @@ const source: Language = {
               pack_use: 'Gói đang sử dụng',
               pack_time: 'Thời gian sử dụng',
               page_amount: 'Số lượng trang',
+              last_reset: 'Làm mới gói gần nhất',
               staff_amount: 'Số lượng nhân sự',
               bot: 'Chatbot',
               chat_feature: 'Các tính năng chat',
