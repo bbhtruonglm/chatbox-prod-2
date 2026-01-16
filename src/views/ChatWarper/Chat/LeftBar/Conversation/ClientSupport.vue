@@ -1,21 +1,25 @@
 <template>
   <div class="flex items-center justify-between h-4">
-    <div class="flex items-center gap-1 flex-grow min-w-1 overflow-hidden">
+    <div class="flex items-center overflow-x-auto gap-1 flex-grow min-w-1">
       <img
         v-tooltip="$t('v1.view.main.dashboard.chat.action.has_reply')"
         v-if="source?.last_message_type === 'page'"
         class="w-3 h-3 flex-shrink-0"
         src="@/assets/icons/reply.svg"
       />
-      <div class="flex items-center overflow-x-auto gap-1 w-full">
-        <Label
-          class="shrink-0"
-          v-for="label_id of getPreviewLabel()"
-          :page_id="source?.fb_page_id"
-          :label_id="label_id"
-        />
+      <Label
+        v-for="label_id of getPreviewLabel()"
+        :page_id="source?.fb_page_id"
+        :label_id="label_id"
+      />
+      <div
+        @mouseover="label_popover_ref?.mouseover"
+        @mouseleave="label_popover_ref?.mouseleave"
+        v-if="getSizeLabel() > 3"
+        class="border text-[9px] text-gray-700 rounded px-1"
+      >
+        + {{ getSizeLabel() - 3 }}
       </div>
-      <!-- removed +N label -->
     </div>
     <div class="flex items-center gap-1 flex-shrink-0">
       <img
@@ -41,7 +45,10 @@
       </template>
       <!-- Nếu AI bật và thiết lập AI bật thì mới hiển thị icon -->
       <SparklesIcon
-        v-if="shouldShowAiIcon(source)"
+        v-if="
+          calcStatus?.(source) &&
+          getPageInfo(source?.fb_page_id)?.is_active_ai_agent
+        "
         class="size-3"
         v-tooltip.bottom="$t('AI đang bật')"
       />
@@ -55,7 +62,21 @@
       </div>
     </div>
   </div>
-  <!-- removed popover -->
+  <Popover
+    ref="label_popover_ref"
+    position="RIGHT"
+    :is_fit="false"
+    width="auto"
+    height="auto"
+    :back="8"
+    class_content="max-h-52 flex flex-wrap justify-center gap-1"
+  >
+    <Label
+      v-for="label_id of getFullLabel()"
+      :page_id="source?.fb_page_id"
+      :label_id="label_id"
+    />
+  </Popover>
 </template>
 <script setup lang="ts">
 import { composableService } from '@/views/ChatWarper/Chat/CenterContent/UserInfo/ChatbotStatus/service'
@@ -96,25 +117,25 @@ function isFindUid() {
   // trả về trạng thái tìm uid
   return extensionStore.is_find_uid[$props.source?.data_key]
 }
-/**lấy toàn bộ label */
+/**chỉ lấy 3 label đầu tiên */
 function getPreviewLabel() {
-  return getLabelValid($props.source?.fb_page_id, $props.source?.label_id)
+  return getLabelValid(
+    $props.source?.fb_page_id,
+    $props.source?.label_id
+  )?.slice(0, 3)
 }
-
-/**kiểm tra có hiển thị icon AI ko */
-function shouldShowAiIcon(source?: ConversationInfo) {
-  /** kiểm tra trạng thái AI cơ bản */
-  const IS_ACTIVE =
-    calcStatus?.(source) && getPageInfo(source?.fb_page_id)?.is_active_ai_agent
-  // nếu không có trạng thái ai thì dừng
-  if (!IS_ACTIVE) return false
-
-  // nếu là bài post
-  if (source?.conversation_type === 'POST') {
-    // phải có mô tả training thì mới hiện
-    return !!source.ai_description
-  }
-
-  return true
+/**lấy toàn bộ nhãn, trừ 3 nhãn đầu */
+function getFullLabel() {
+  return getLabelValid(
+    $props.source?.fb_page_id,
+    $props.source?.label_id
+  )?.slice(3)
+}
+/**tính số lượng nhãn */
+function getSizeLabel() {
+  return (
+    getLabelValid($props.source?.fb_page_id, $props.source?.label_id)?.length ||
+    0
+  )
 }
 </script>
